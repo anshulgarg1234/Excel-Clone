@@ -69,11 +69,11 @@ $(".input-cell").dblclick(function (e) {
 $(".input-cell").blur(function (e) {
     $(this).attr("contenteditable", "false");
     let [rowId, colId] = getRowCol(this);
+    updateCellData("text", $(this).text());
     if (cellData[selectedSheet][rowId - 1][colId - 1].formula != "") {
         updateStreams(this,[]);
     }
     cellData[selectedSheet][rowId - 1][colId - 1].formula = "";
-    updateCellData("text", $(this).text());
     let selfColCode = $(`.column-${colId}`).attr("id");
     evalFormula(selfColCode + rowId);
 });
